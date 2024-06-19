@@ -28,6 +28,13 @@ Run the following command in your terminal.
 pip install -r requirements.txt
 ```
 
+After this, you'll need the Mistral-7B model from Hugging Face. Run the following command in your terminal.
+
+```
+python ./AI/convert.py --hf-path mistralai/Mistral-7B-v0.1 --mlx-path ./AI/mlx_model -q
+```
+This will download the Mistral-7B model from Hugging Face and convert it to a quantized model for faster inference. It will be saved in ./AI/mlx_model folder.
+
 ## INSTRUCTIONS
 
 ### Using the AI integrated chatroom:
@@ -35,11 +42,6 @@ pip install -r requirements.txt
 
 [These are the instructions to run the chatroom locally. Running the chatroom app on multiple devices over a network is out of the scope of this readme.]
 
-First you will have to install tkinter for this. To install tkinter, use the following command in terminal:
-
-```
-pip install tk
-```
 After tkinter is installed, run the following command in the terminal;
 ```
 python ./server.py localhost
@@ -56,14 +58,11 @@ Type whatever you want to send in the input box provided. If you wait for 2 seco
 
 ### Using the fine-tuned fused model:
 
-First you will have to install tkinter for this. To install tkinter, use the following command in terminal:
-
-```
-pip install tk
-```
-
 To use the fine-tuned fused model in a GUI environment, run the gui.py python file on your local environment. 
 
+```
+python gui.py
+```
 
 A window like this will open, enter whatever prompt you want to give, and in the generated text box, the AI generated customized text  suggestion will appear. 
 
@@ -73,11 +72,12 @@ You can also keep typing and looking for other suggestions.
 
 
 You can adjust the confidence level of the model by adjusting the temperature in gui.py.
+
 To run the fused model in terminal, type the following command in terminal
 
 ```
-python lora.py --model ./mlx_model \
-               --adapter-file ./whatsapp.npz \
+python lora.py --model ./AI/mlx_model \
+               --adapter-file ./AI/whatsapp.npz \
                --max-tokens 100 \
                --prompt \
                "Heet: Hey guys, "  #(this should be your prompt part)
@@ -114,15 +114,20 @@ in terminal.
 Run the following command to generate training file in the format for the model:
 
 ```
-python whatsapp.py --input_file chat.txt --output_file chat.jsonl --test_file data/test.jsonl --train_file data/train.jsonl --valid_file data/valid.jsonl
+python whatsapp.py --input_file chat.txt --output_file chat.jsonl --test_file ./AI/mydata/test.jsonl --train_file ./AI/mydata/train.jsonl --valid_file data/valid.jsonl
 ```
 
 Then to train the model, use the command
 
 ```
-python lora.py --model mlx_model --train --iters 600 --data ./data --batch-size 2 --adapter-file whatsapp.npz
+python ./AI/lora.py --model ./AI/mlx_model --train --iters 600 --data ./AI/mydata --batch-size 2 --adapter-file whatsapp.npz
 ```
+Note that I have already uploaded my data and its adapter file as whatsapp.npz. You can use your own data and adapter file. <br/>
 
 For my system, MacBook Pro 14" with M1 Pro chip, it took about 5.5 hours for complete training (all 600 iterations).
 
 After training, you are good to go and can use the model as mentioned before.
+
+## CREDITS
+
+The models directory, convert.py, fuse.py, lora.py, models.py, and utils.py are taken from https://github.com/ml-explore/mlx-examples and modified for our use case. Same goes with whatsapp.py, which is taken from https://github.com/gavi/mlx-whatsapp and modified. I thank the authors for their work, and their code has been very helpful in our project. Also, big thanks to Hugging Face for their Mistral-7B model, which we fine-tuned for our project.
