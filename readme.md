@@ -120,11 +120,11 @@ python whatsapp.py --input_file chat.txt --output_file chat.jsonl --test_file ./
 Then to train the model, use the command
 
 ```
-python ./AI/lora.py --model ./AI/mlx_model --train --iters 600 --data ./AI/mydata --batch-size 2 --adapter-file whatsapp.npz
+python ./AI/lora.py --model ./AI/mlx_model --train --iters 1000 --data ./AI/mydata --batch-size 2 --adapter-file ./AI/whatsapp.npz
 ```
 Note that I have already uploaded my data and its adapter file as whatsapp.npz. You can use your own data and adapter file. <br/>
 
-For my system, MacBook Pro 14" with M1 Pro chip, it took about 5.5 hours for complete training (all 600 iterations).
+For my system, MacBook Pro 14" with M1 Pro chip, it took about 8 hours for complete training (all 1000 iterations).
 
 After training, you are good to go and can use the model as mentioned before.
 
