@@ -49,7 +49,7 @@ python ./server.py localhost
 This will start the server for the chatroom. Also an address will be shown in the terminal (eg. for me it is 125.1.0.1), copy this address.
 Now go to another terminal in the same folder, and type the command
 ```
-python clientAI.py 125.1.0.1
+python chatroom_client.py 125.1.0.1
 ```
 Use your own copied address in the command, here I have used mine.
 This will start a program which will ask for your name, enter name and a window appears.
