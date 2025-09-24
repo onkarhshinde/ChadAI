@@ -10,6 +10,7 @@ https://github.com/heet434/chadAI/assets/118350153/1b04b5fb-8eaf-4cce-b9f7-aa334
 
 Click this link for a complete working demo video of the app: [demo_video](https://youtu.be/pwR5q8MuECg?list=PLLKRQN6ufBc4EmP-kUI0tSSCUgRH8jDMe)
 
+
 ## IMPORTANT
 
 Note that this model was trained on Apple MacBook M1 Pro environment and uses Apple's MLX framework for fast computing using Apple's integrated Metal GPUs inside Apple Silicon. 
@@ -131,3 +132,4 @@ After training, you are good to go and can use the model as mentioned before.
 ## CREDITS
 
 The models directory, convert.py, fuse.py, lora.py, models.py, and utils.py are taken from https://github.com/ml-explore/mlx-examples and modified for our use case. Same goes with whatsapp.py, which is taken from https://github.com/gavi/mlx-whatsapp and modified. I thank the authors for their work, and their code has been very helpful in our project. Also, big thanks to Hugging Face for their Mistral-7B model, which we fine-tuned for our project.
+
